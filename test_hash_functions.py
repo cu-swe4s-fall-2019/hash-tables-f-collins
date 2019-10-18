@@ -41,23 +41,24 @@ class TestHashFunctions(unittest.TestCase):
         randval = random.randint(32, 126)
         randn = random.randint(1, 100)
 
-        s = ((randval * 53) % 2 ** 64)
+        s = randval % 2 ** 64
 
         self.assertEqual(s % randn, hf.h_rolling(str(chr(randval)), randn))
 
     def test_h_rolling_random_str(self):
-        randstr = ""
-        randlen = random.randint(1, 20)
-        randn = random.randint(1, 100)
-        s = 0
-        for i in range(randlen):
-            randchar = random.randint(32, 126)
-            randstr += chr(randchar)
-            s += (randchar * 53 ** i)
+        for test in range(0, 1000):
+            randstr = ""
+            randlen = random.randint(1, 20)
+            randn = random.randint(1, 100)
+            s = 0
+            for i in range(randlen):
+                randchar = random.randint(32, 126)
+                randstr += chr(randchar)
+                s += randchar * 53 ** i
 
-        s = (s % 2 ** 64)
+            s = s % 2 ** 64
 
-        self.assertEqual(s % randn, hf.h_rolling(randstr, randn))
+            self.assertEqual(s % randn, hf.h_rolling(randstr, randn))
 
     def test_h_rolling_empty_str(self):
         self.assertEqual(0, hf.h_rolling("", random.randint(1,100))) 
@@ -67,15 +68,10 @@ class TestHashFunctions(unittest.TestCase):
 
     def test_h_rolling_non_string_key(self):
         randnum = random.randint(0,1000)
-        randn = random.randint(0,100) 
-        s = 0
-        for i in range(len(str(randnum))):
-            s += ord((str(randnum))[i])
-            s += (int(str(randnum)[i]) * 53 ** i)
+        randn = random.randint(1,100) 
+        randstr = str(randnum)
 
-        s = (s % 2 ** 64)
-
-        self.assertEqual(s % randn, hf.h_rolling(randnum, randn))
+        self.assertEqual(hf.h_rolling(str(randnum), randn), hf.h_rolling(randnum, randn))
 
 
 

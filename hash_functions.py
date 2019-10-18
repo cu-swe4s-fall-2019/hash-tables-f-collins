@@ -14,5 +14,17 @@ def h_ascii(key, N):
 
     return asciisum % N
 
-def h_rolling(key, N):
-    return None
+def h_rolling(key, N, p=53, m=2**64):
+    key = str(key)
+
+    if len(key) == 0:
+        return 0
+    if N <= 0:
+        return None
+
+    s = 0
+    for i in range(len(key)):
+        s += ord(key[i]) * p ** i
+
+    s = s % m
+    return s % N
