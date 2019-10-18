@@ -20,11 +20,23 @@ class TestHashFunctions(unittest.TestCase):
                 randstr += chr(randchar)
                 strsum += randchar
             
-            print(randstr)
-            print(strsum)
-            print(hf.h_ascii(randstr, randn))
-
             self.assertEqual(strsum % randn, hf.h_ascii(randstr, randn))
+
+    def test_h_ascii_empty_str(self):
+        self.assertEqual(0, hf.h_ascii("", random.randint(1,100))) 
+
+    def test_h_ascii_invalid_n(self):
+        self.assertEqual(None, hf.h_ascii("whatever", random.randint(-100,0)))
+
+    def test_h_ascii_non_string_key(self):
+        randnum = random.randint(0,1000)
+        randn = random.randint(0,100) 
+        strsum = 0
+        for char in str(randnum):
+            strsum += ord(char)
+
+        self.assertEqual(strsum % randn, hf.h_ascii(randnum, randn))
+
 
 
 if __name__ == "__main__":
