@@ -4,6 +4,7 @@ import sys
 import random
 import time
 
+
 class LinearProbe:
     def __init__(self, N, hash_function):
         self.hash_function = hash_function
@@ -15,7 +16,7 @@ class LinearProbe:
         start_hash = self.hash_function(key, self.N)
 
         try:
-            while self.L[start_hash] != None:
+            while self.L[start_hash] is not None:
                 start_hash += 1
             self.L[start_hash] = (key, value)
             return 0
@@ -28,6 +29,7 @@ class LinearProbe:
             if key == entry[0]:
                 return entry[1]
         return None
+
 
 class ChainedHash:
     def __init__(self, N, hash_function):
@@ -47,6 +49,7 @@ class ChainedHash:
             if key == entry[0]:
                 return entry[1]
         return None
+
 
 def main():
     parser = argparse.ArgumentParser(description='Hash Tables.',
@@ -71,7 +74,7 @@ def main():
                         type=str,
                         help='The size of the hash table.',
                         required=True)
-    
+
     args = parser.parse_args()
 
     infile = open(args.input_file, "r")
@@ -93,9 +96,10 @@ def main():
     for line in infile:
         elements += 1
         currenttime = time.time()
-        hashtable.add(line, random.randint(0,1000))
+        hashtable.add(line, random.randint(0, 1000))
         insertiontime = time.time() - currenttime
         print(str(elements/float(args.table_size)) + " " + str(insertiontime))
+
 
 if __name__ == "__main__":
     main()

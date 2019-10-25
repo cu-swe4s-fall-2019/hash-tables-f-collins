@@ -1,5 +1,6 @@
 import argparse
 
+
 def h_ascii(key, N):
     key = str(key)
     # We default to a hash of zero for empty strs so we can still store
@@ -14,6 +15,7 @@ def h_ascii(key, N):
         asciisum += ord(char)
 
     return asciisum % N
+
 
 def h_rolling(key, N, p=53, m=2**64):
     key = str(key)
@@ -49,7 +51,7 @@ def main():
                         type=str,
                         help='The size of the hash table.',
                         required=True)
-    
+
     args = parser.parse_args()
 
     infile = open(args.input_file, "r")
