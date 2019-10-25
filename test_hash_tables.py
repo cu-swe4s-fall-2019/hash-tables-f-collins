@@ -7,8 +7,8 @@ class TestHashTables(unittest.TestCase):
     def test_linearprobe_h_ascii_single_element(self):
         table = ht.LinearProbe(1, ht.h_ascii)
         randstr = ""
-        strlen = random.randint(1,50)
-        randval = random.randint(0,999)
+        strlen = random.randint(1, 50)
+        randval = random.randint(0, 999)
 
         for char in range(0, strlen):
             randstr += chr(random.randint(32, 126))
@@ -24,7 +24,7 @@ class TestHashTables(unittest.TestCase):
 
         for i in range(0, 500):
             randkey = ""
-            randomval = random.randint(0,100)
+            randomval = random.randint(0, 100)
             for i in range(0, random.randint(1, 50)):
                 randkey += chr(random.randint(32, 126))
             if randkey in tabledict:
@@ -34,7 +34,7 @@ class TestHashTables(unittest.TestCase):
                     break
                 else:
                     tabledict[randkey] = randomval
-                    table.add(randkey, randomval) 
+                    table.add(randkey, randomval)
 
         for key in tabledict:
             self.assertEqual(tabledict[key], table.search(key))
@@ -42,8 +42,8 @@ class TestHashTables(unittest.TestCase):
     def test_linearprobe_h_rolling_single_element(self):
         table = ht.LinearProbe(1, ht.h_rolling)
         randstr = ""
-        strlen = random.randint(1,50)
-        randval = random.randint(0,999)
+        strlen = random.randint(1, 50)
+        randval = random.randint(0, 999)
 
         for char in range(0, strlen):
             randstr += chr(random.randint(32, 126))
@@ -59,7 +59,7 @@ class TestHashTables(unittest.TestCase):
 
         for i in range(0, 500):
             randkey = ""
-            randomval = random.randint(0,100)
+            randomval = random.randint(0, 100)
             for i in range(0, random.randint(1, 50)):
                 randkey += chr(random.randint(32, 126))
             if randkey in tabledict:
@@ -69,7 +69,7 @@ class TestHashTables(unittest.TestCase):
                     break
                 else:
                     tabledict[randkey] = randomval
-                    table.add(randkey, randomval) 
+                    table.add(randkey, randomval)
 
         for key in tabledict:
             self.assertEqual(tabledict[key], table.search(key))
@@ -77,8 +77,8 @@ class TestHashTables(unittest.TestCase):
     def test_chainedhash_h_ascii_single_element(self):
         table = ht.ChainedHash(1, ht.h_ascii)
         randstr = ""
-        strlen = random.randint(1,50)
-        randval = random.randint(0,999)
+        strlen = random.randint(1, 50)
+        randval = random.randint(0, 999)
 
         for char in range(0, strlen):
             randstr += chr(random.randint(32, 126))
@@ -94,7 +94,7 @@ class TestHashTables(unittest.TestCase):
 
         for i in range(0, 500):
             randkey = ""
-            randomval = random.randint(0,100)
+            randomval = random.randint(0, 100)
             for i in range(0, random.randint(1, 50)):
                 randkey += chr(random.randint(32, 126))
             if randkey in tabledict:
@@ -104,7 +104,7 @@ class TestHashTables(unittest.TestCase):
                     break
                 else:
                     tabledict[randkey] = randomval
-                    table.add(randkey, randomval) 
+                    table.add(randkey, randomval)
 
         for key in tabledict:
             self.assertEqual(tabledict[key], table.search(key))
@@ -112,8 +112,8 @@ class TestHashTables(unittest.TestCase):
     def test_chainedhash_h_rolling_single_element(self):
         table = ht.ChainedHash(1, ht.h_rolling)
         randstr = ""
-        strlen = random.randint(1,50)
-        randval = random.randint(0,999)
+        strlen = random.randint(1, 50)
+        randval = random.randint(0, 999)
 
         for char in range(0, strlen):
             randstr += chr(random.randint(32, 126))
@@ -129,7 +129,7 @@ class TestHashTables(unittest.TestCase):
 
         for i in range(0, 500):
             randkey = ""
-            randomval = random.randint(0,100)
+            randomval = random.randint(0, 100)
             for i in range(0, random.randint(1, 50)):
                 randkey += chr(random.randint(32, 126))
             if randkey in tabledict:
@@ -139,7 +139,7 @@ class TestHashTables(unittest.TestCase):
                     break
                 else:
                     tabledict[randkey] = randomval
-                    table.add(randkey, randomval) 
+                    table.add(randkey, randomval)
 
         for key in tabledict:
             self.assertEqual(tabledict[key], table.search(key))
