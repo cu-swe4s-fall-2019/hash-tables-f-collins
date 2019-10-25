@@ -9,13 +9,20 @@ class LinearProbe:
 
     def add(self, key, value):
         start_hash = self.hash_function(key, self.N)
-        print(start_hash)
-        self.L[start_hash] = value
+
+        try:
+            while self.L[start_hash] != None:
+                start_hash += 1
+            self.L[start_hash] = (key, value)
+            return 0
+        except IndexError:
+            return -1
 
     def search(self, key):
         start_hash = self.hash_function(key, self.N)
-        return self.L[start_hash]
-
+        for entry in self.L[start_hash:]:
+            if key == entry[0]:
+                return entry[1]
 
 class ChainedHash:
     def __init__(self, N, hash_function):
